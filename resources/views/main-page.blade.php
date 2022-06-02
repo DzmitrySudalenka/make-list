@@ -26,7 +26,7 @@
         @csrf
         <div class="form-group">
           <label for="jsonContent">JSON content</label>
-          <textarea class="form-control" id="jsonContent" rows="5"></textarea>
+          <textarea class="form-control" id="jsonContent" name="jsonContent" rows="5"></textarea>
         </div>
         <button type="submit" class="btn btn-primary w-100 my-4">Submit</button>
       </form>
