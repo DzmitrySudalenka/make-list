@@ -8,11 +8,15 @@ class MainPageController extends Controller
 {
   public function index(Request $request) {
     
+    $jsonContent = $request->has('jsonContent') ? $request->input('jsonContent') : file_get_contents(storage_path()."/list.json");
+    
+    $background = $request->has('background') ? $request->input('background') : '(241;245;249)';
+    
+    $depth = $request->has('depth') ? $request->input('depth') : 'max';
+    
     $htmlList = '';
     
-    $jsonList = $request->input('jsonContent');
-    
-    $background = $request->input('background');
+    $listBg = '';
     
     if ($background) {
       
@@ -22,30 +26,29 @@ class MainPageController extends Controller
         
         preg_match($rgbRegex, $background, $rgbValues);
         
-        $background = sprintf("#%02x%02x%02x", $rgbValues[1], $rgbValues[2], $rgbValues[3]);
+        $listBg = sprintf("#%02x%02x%02x", $rgbValues[1], $rgbValues[2], $rgbValues[3]);
         
       } else {
         
         $bgUrl = parse_url($background);
         
-        $background = "url(//{$bgUrl['host']}{$bgUrl['path']}) top/cover no-repeat";
+        $listBg = "url(//{$bgUrl['host']}{$bgUrl['path']}) top/cover no-repeat";
         
       }
       
     }
-    
-    $depth = $request->input('depth');
 
-    if ($jsonList) {
+    if ($jsonContent) {
       
-      $objectList = json_decode($jsonList);
+      $objectList = json_decode($jsonContent);
       
-      $htmlList = $this->renderListFromObject($objectList, $depth, true, $background);
+      $htmlList = $this->renderListFromObject($objectList, $depth, true, $listBg);
 
     }
 
     return view('main-page', [
       'list' => $htmlList,
+      'jsonContent' => $jsonContent,
       'background' => $background,
       'depth' => $depth
     ]);

@@ -25,48 +25,18 @@
         <form class="form" method="POST" action="/">
           @csrf
           <label for="jsonContent">JSON content</label>
-          <textarea class="form__control json-content" id="jsonContent" name="jsonContent">{
-    "name": "list",
-    "type": "list",
-    "items": [
-      {
-        "name": "subList_lvl-1_child-1",
-        "type": "list",
-        "items": [
-          {"name": "subList_lvl-1_child-1_item-1", "type": "list-item", "value": "1"},
-          {
-            "name": "subList_lvl-1_child-1_lvl-2_child-1",
-            "type": "list",
-            "items": [
-              {"name": "subList_lvl-1_child-1_lvl-2_child-1_item-1", "type": "list-item", "value": "1"},
-              {"name": "subList_lvl-1_child-1_lvl-2_child-1_item-2", "type": "list-item", "value": "2"}
-            ]
-          },
-          {"name": "subList_lvl-1_child-1_item-3", "type": "list-item", "value": "3"}
-        ]
-      },
-      {
-        "name": "subList_lvl-1_child-2",
-        "type": "list",
-        "items": [
-          {"name": "subList_lvl-1_child-2_item-1", "type": "list-item", "value": "1"},
-          {"name": "subList_lvl-1_child-2_item-2", "type": "list-item", "value": "2"}
-        ]
-      }
-    ]
-  }</textarea>
+          <textarea class="form__control json-content" id="jsonContent" name="jsonContent">{{ $jsonContent }}</textarea>
           
           <div class="form__groups">
           
             <div class="form__group">
               <label for="background">Background:</label>
-              <input class="form__control" type="text" id="background" name="background" value="(241;245;249)">
-              <!-- <input class="form__control" type="text" id="background" name="background" value="https://buhankatur.ru/wp-content/uploads/2018/09/elbrus-not-bus-51-1.jpg"> -->
+              <input class="form__control" type="text" id="background" name="background" value="{{ $background }}">
             </div>
             
             <div class="form__group">
               <label for="depth">Depth:</label>
-              <input class="form__control" type="text" id="depth" name="depth" value="max">
+              <input class="form__control" type="text" id="depth" name="depth" value="{{ $depth }}">
             </div>
             
           </div>
@@ -80,19 +50,7 @@
       
         <h2 class="generated-list__title">Generated list</h2>
         
-        <div class="generated-list__content">
-        
-        @if ($list)
-          
-          {!! $list !!}
-          
-        @else
-          
-          Empty.
-
-        @endif
-        
-        </div>
+        <div class="generated-list__content">@if ($list) {!! $list !!} @else Empty. @endif</div>
       
       </section>
       
