@@ -25,7 +25,7 @@
         <form class="form" method="POST" action="/">
           @csrf
           <label for="jsonContent">JSON content</label>
-          <textarea class="json-content" id="jsonContent" name="jsonContent">{
+          <textarea class="form__control json-content" id="jsonContent" name="jsonContent">{
     "name": "list",
     "type": "list",
     "items": [
@@ -55,6 +55,22 @@
       }
     ]
   }</textarea>
+          
+          <div class="form__groups">
+          
+            <div class="form__group">
+              <label for="background">Background:</label>
+              <input class="form__control" type="text" id="background" name="background" value="(241;245;249)">
+              <!-- <input class="form__control" type="text" id="background" name="background" value="https://buhankatur.ru/wp-content/uploads/2018/09/elbrus-not-bus-51-1.jpg"> -->
+            </div>
+            
+            <div class="form__group">
+              <label for="depth">Depth:</label>
+              <input class="form__control" type="text" id="depth" name="depth" value="max">
+            </div>
+            
+          </div>
+          
           <button type="submit" class="btn">Generate</button>
         </form>
         
