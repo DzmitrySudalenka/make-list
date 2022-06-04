@@ -1,9 +1,10 @@
-Access 
+<pre>
+<b>Access</b>
 
   username: root
   password: 1234
 
-Nginx config data(to run on Open Server Panel):
+<b>Nginx config data(to run on Open Server Panel):</b>
 
 server {
   listen                    %ip%:%httpport%;
@@ -39,3 +40,4 @@ server {
     deny all;
   }
 }
+</pre>
