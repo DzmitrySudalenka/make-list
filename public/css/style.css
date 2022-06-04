@@ -65,6 +65,9 @@ body {
 .generated-list__content {
   margin-top: 47px;
 }
+.error {
+  color: red;
+}
 .list {
   width: 100%;
   max-width: 578px;

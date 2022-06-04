@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\MainPageController;
+use App\Http\Controllers\ListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +15,4 @@ use App\Http\Controllers\MainPageController;
 |
 */
 
-Route::any('/', [MainPageController::class, 'index']);
+Route::any('/', [ListController::class, 'index']);
