@@ -17,7 +17,7 @@ class ListController extends Controller
       
       $depth = $request->has('depth') ? $request->input('depth') : 'max';
       
-      if ($depth <= 0 && $depth != 'max') throw new Exception("Depth must be from 1 and above including 'max'.");
+      if ((int)$depth <= 0 && $depth != 'max') throw new Exception("Depth must be from 1 and above including 'max'.");
       
       $listBg = $this->makeListBg($background);
       
@@ -66,9 +66,15 @@ class ListController extends Controller
           
         } else {
           
-          $bgUrl = parse_url($background);
+          $bgUrlArr = parse_url($background);
           
-          $listBg = "url(//{$bgUrl['host']}{$bgUrl['path']}) top/cover no-repeat";
+          $bgUrl = '';
+          
+          if (array_key_exists('host', $bgUrlArr)) $bgUrl .= $bgUrlArr['host'];
+          
+          $bgUrl .= $bgUrlArr['path'];
+          
+          $listBg = "url(//{$bgUrl}) top/cover no-repeat";
           
         }
         
